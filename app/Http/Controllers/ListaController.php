@@ -12,7 +12,7 @@ class ListaController extends Controller
         $listas = DB::table('listas')
             ->leftjoin('materias', 'listas.id_materia', '=', 'materias.id')
             ->leftjoin('alumnos', 'listas.id_alumno', '=', 'alumnos.id')
-            ->select('listas.*', 'materias.nombre as nombre_,ateria', 'alumnos.nombre as alumno')
+            ->select('listas.*', 'materias.nombre as nombre_materia', 'alumnos.nombre as alumno')
             ->orderBy('listas.updated_at', 'desc')
             ->get();
         return $listas;
@@ -20,12 +20,10 @@ class ListaController extends Controller
 
     public function listByMateria(Request $req)
     {
-        $listas = DB::table('listas')
-            ->leftjoin('materias', 'listas.id_materia', '=', 'materias.id')
-            ->leftjoin('alumnos', 'listas.id_alumno', '=', 'alumnos.id')
-            ->select('listas.*', 'materias.nombre as nombre_,ateria', 'alumnos.nombre as alumno')
+        $listas = DB::table('alumnos')
+            ->leftjoin('materias', 'alumnos.id_materia', '=', 'materias.id')
+            ->select('alumnos.id as id_alumno', 'materias.id as id_materia', 'materias.nombre as materia', 'alumnos.nombre as alumno')
             ->where('id_materia', intval($req->id_materia))
-            ->orderBy('listas.updated_at', 'desc')
             ->get();
         return $listas;
 
