@@ -10,12 +10,7 @@ class MateriaController extends Controller
 {
     public function list(){
         $materias=materia::all();
-        $arr = [
-            "res" => "ok",
-            "materias" => $materias
-
-        ];
-        return $arr;
+        return $materias;
     }
 
     public function find(Request $req){
