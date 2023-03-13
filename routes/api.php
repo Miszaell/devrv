@@ -32,7 +32,7 @@ Route::post('profesor/save', [ProfesorController::class, 'save']);
 Route::delete('profesor/delete/{id}', [ProfesorController::class, 'delete']);
 
 Route::get('lista/list', [ListaController::class, 'list']);
-Route::get('lista/listByMateria', [ListaController::class, 'listByMateria']);
+Route::get('lista/listByMateria/{id}', [ListaController::class, 'listByMateria']);
 Route::get('lista/find', [ListaController::class, 'find']);
 Route::post('lista/save', [ListaController::class, 'save']);
 Route::post('lista/delete', [ListaController::class, 'delete']);

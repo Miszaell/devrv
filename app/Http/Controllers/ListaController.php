@@ -18,12 +18,12 @@ class ListaController extends Controller
         return $listas;
     }
 
-    public function listByMateria(Request $req)
+    public function listByMateria($id)
     {
         $listas = DB::table('alumnos')
             ->leftjoin('materias', 'alumnos.id_materia', '=', 'materias.id')
             ->select('alumnos.id as id_alumno', 'materias.id as id_materia', 'materias.nombre as materia', 'alumnos.nombre as alumno')
-            ->where('id_materia', intval($req->id_materia))
+            ->where('id_materia', intval($id))
             ->get();
         return $listas;
 
