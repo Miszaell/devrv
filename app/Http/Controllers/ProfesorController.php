@@ -11,7 +11,7 @@ class ProfesorController extends Controller
     public function list(){
         $profesors=DB::table('profesors')
         ->leftjoin('materias', 'profesors.id_materia', '=','materias.id')
-        ->select('profesors.*','materias.nombre as nombre_,ateria')
+        ->select('profesors.*','materias.nombre as nombre_materia')
         ->orderBy('profesors.updated_at','desc')
         ->get();
         return $profesors;
