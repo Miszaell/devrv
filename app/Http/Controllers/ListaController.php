@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\DB;
 class ListaController extends Controller
 {
     function list() {
+        $date = now()->format('Y-m-d');
         $listas = DB::table('listas')
             ->leftjoin('materias', 'listas.id_materia', '=', 'materias.id')
             ->leftjoin('alumnos', 'listas.id_alumno', '=', 'alumnos.id')
             ->select('listas.*', 'materias.nombre as nombre_materia', 'alumnos.nombre as alumno')
+            ->whereDate('listas.fecha', $date)
             ->orderBy('listas.updated_at', 'desc')
             ->get();
         return $listas;
